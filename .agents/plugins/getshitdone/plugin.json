@@ -1,0 +1,5 @@
+{
+  "name": "getshitdone",
+  "description": "Get Shit Done (GSD) meta-prompting, milestone planning, phase execution, state persistence, and atomic workflow framework.",
+  "version": "1.0.0"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "coderabbit",
+  "description": "AI-powered automated code review, AST inspection, security analysis, and PR quality gate enforcement.",
+  "version": "1.0.0"
+}

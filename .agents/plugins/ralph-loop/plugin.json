@@ -1,0 +1,5 @@
+{
+  "name": "ralph-loop",
+  "description": "Autonomous Ralph feedback loop for continuous self-correcting test-driven execution until 100% verification passes.",
+  "version": "1.0.0"
+}
