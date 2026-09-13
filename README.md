@@ -5,6 +5,14 @@
 **Theme:** Space Technology / Smart Mining Automation  
 **Team Name:** Mine Twin  
 
+[![Presentation](https://img.shields.io/badge/SIH%20Presentation-sih__submission.ppt-orange?style=for-the-badge&logo=microsoftpowerpoint)](./sih_submission.ppt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
+
+---
+
+## 📑 Official Presentation Deck
+- **Presentation File**: [**`sih_submission.ppt`**](./sih_submission.ppt) (4.56 MB — Complete SIH Grand Finale Pitch Deck covering Problem Statement, Orbital MPM Architecture, Predictive Haul Rerouting, and Triple-Bottom-Line MOIL ROI).
+
 ---
 
 ## 🌟 Executive Summary & Overview
@@ -76,6 +84,12 @@ It bridges macro-level orbital remote sensing with micro-level pit hauler dispat
 ## 📂 Project Structure
 
 ```
+├── frontend/                       # MnSight Enterprise WebGIS & Control Room Dashboard
+│   ├── src/
+│   │   ├── components/             # PitSpatialWorkspace, DockedConsole, GlobalHeaderBar
+│   │   ├── data/                   # Concession profiles, DEWP forecasts, ADS directives
+│   │   └── App.tsx                 # Full-Screen mining control room application
+│   └── package.json                # React 19 + TypeScript + Vite + Tailwind CSS
 ├── backend/
 │   ├── main.py                     # FastAPI application entry point with CORS
 │   ├── data/
@@ -92,8 +106,10 @@ It bridges macro-level orbital remote sensing with micro-level pit hauler dispat
 │       └── routes_telemetry.py     # Endpoints for Pit Digital Twin, Benches & Executive KPIs
 ├── tests/
 │   └── test_all_modes.py           # Automated test suite (12 passed tests)
-├── requirements.txt                # Pinned project dependencies
-├── run_server.py                   # One-click server launcher
+├── sih_submission.ppt              # Official SIH Grand Finale Presentation Deck (4.56 MB)
+├── LICENSE                         # MIT License
+├── requirements.txt                # Pinned backend Python dependencies
+├── run_server.py                   # One-click FastAPI server launcher
 └── README.md                       # Complete technical documentation
 ```
 
