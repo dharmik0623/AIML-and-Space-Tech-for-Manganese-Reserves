@@ -29,9 +29,9 @@ export const TopCommandBar: React.FC<TopCommandBarProps> = ({
       <div className="flex items-center space-x-3">
         <div className="relative flex items-center justify-center">
           <img 
-            src="/logo.jpeg" 
+            src="/logo.png" 
             alt="MnSight Logo" 
-            className="w-8 h-8 rounded-full border border-amber-500/50 object-cover shadow-lg shadow-amber-500/30"
+            className="w-9 h-9 rounded-full object-contain filter drop-shadow-[0_0_8px_rgba(245,158,11,0.45)] transition-transform hover:scale-105"
           />
           <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-zinc-950 animate-pulse" />
         </div>
