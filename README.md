@@ -6,7 +6,6 @@
 **Team Name:** Mine Twin  
 
 [![Presentation](https://img.shields.io/badge/SIH%20Presentation-sih__submission.ppt-orange?style=for-the-badge&logo=microsoftpowerpoint)](./sih_submission.ppt)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 
 ---
 
@@ -107,7 +106,6 @@ It bridges macro-level orbital remote sensing with micro-level pit hauler dispat
 ├── tests/
 │   └── test_all_modes.py           # Automated test suite (12 passed tests)
 ├── sih_submission.ppt              # Official SIH Grand Finale Presentation Deck (4.56 MB)
-├── LICENSE                         # MIT License
 ├── requirements.txt                # Pinned backend Python dependencies
 ├── run_server.py                   # One-click FastAPI server launcher
 └── README.md                       # Complete technical documentation
