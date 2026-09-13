@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { TopCommandBar } from './components/TopCommandBar';
-import { PredictiveMiningEngine } from './components/PredictiveMiningEngine';
 import { TacticalGisCanvas } from './components/TacticalGisCanvas';
-import { DailyOperationsTable } from './components/DailyOperationsTable';
+import { TacticalOperationsTabs, type DashboardTab } from './components/TacticalOperationsTabs';
 import { RalphAuditModal } from './components/RalphAuditModal';
 import { AddPinModal } from './components/AddPinModal';
 import { SEVEN_DAY_FORECAST, INITIAL_TACTICAL_PINS } from './data/forecastData';
@@ -46,6 +45,7 @@ export function App() {
 
   // 4. Filter & Mode Toggles
   const [activeFilter, setActiveFilter] = useState<DateFilterType>('ALL');
+  const [activeDashboardTab, setActiveDashboardTab] = useState<DashboardTab>('PREDICTIVE_MINE');
   const [isAddPinMode, setIsAddPinMode] = useState<boolean>(false);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState<boolean>(false);
   const [isManualModalOpen, setIsManualModalOpen] = useState<boolean>(false);
@@ -170,6 +170,7 @@ export function App() {
       createdAt: new Date().toISOString()
     };
     handleAddPin(newPin);
+    setActiveDashboardTab('DAILY_LEDGER');
   };
 
   // Export GeoJSON
@@ -241,14 +242,7 @@ export function App() {
         onOpenAuditLog={() => setIsAuditModalOpen(true)}
       />
 
-      {/* 2. PREDICTIVE "BEST TIME TO MINE" ENGINE (5-6 DAYS PRIOR FORECAST) */}
-      <PredictiveMiningEngine
-        selectedDay={selectedDay}
-        onSelectDay={setSelectedDay}
-        onVectorDayTarget={handleVectorDayTarget}
-      />
-
-      {/* 3. INTERACTIVE GIS CANVAS WITH COORDINATION MARKING SYSTEM */}
+      {/* 2. INTERACTIVE GIS CANVAS WITH COORDINATION MARKING SYSTEM (Full Viewport Area) */}
       <div className="flex-1 w-full overflow-hidden relative">
         <TacticalGisCanvas
           pins={pins}
@@ -264,15 +258,20 @@ export function App() {
         />
       </div>
 
-      {/* 4. DAILY OPERATIONS & ACTIVITY LOG TABLE */}
-      <DailyOperationsTable
+      {/* 3. TACTICAL OPERATIONS TABS (Predictive Best Time to Mine, AI Recommendations, Daily Ledger) */}
+      <TacticalOperationsTabs
+        selectedDay={selectedDay}
+        onSelectDay={setSelectedDay}
+        onVectorDayTarget={handleVectorDayTarget}
         pins={pins}
         onUpdatePinStatus={handleUpdatePinStatus}
         onExportGeoJson={handleExportGeoJson}
         onExportCsv={handleExportCsv}
+        activeTab={activeDashboardTab}
+        onTabChange={setActiveDashboardTab}
       />
 
-      {/* 5. MODALS */}
+      {/* 4. MODALS */}
       <RalphAuditModal
         isOpen={isAuditModalOpen}
         onClose={() => setIsAuditModalOpen(false)}
