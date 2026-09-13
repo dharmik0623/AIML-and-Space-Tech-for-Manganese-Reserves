@@ -45,7 +45,7 @@ export const DailyOperationsTable: React.FC<DailyOperationsTableProps> = ({
           </span>
           <span className="hidden sm:inline-flex items-center gap-1 text-[10px] text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/40">
             <ShieldCheck className="w-3 h-3 text-emerald-400" />
-            RALPH AUDITED
+            SYSTEM AUDITED
           </span>
         </div>
 

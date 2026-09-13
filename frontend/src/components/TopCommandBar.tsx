@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Satellite, ShieldCheck, Activity, Compass } from 'lucide-react';
 
 interface TopCommandBarProps {
-  ralphVerificationCount: number;
+  auditVerificationCount: number;
+  ralphVerificationCount?: number;
   onOpenAuditLog: () => void;
 }
 
 export const TopCommandBar: React.FC<TopCommandBarProps> = ({
+  auditVerificationCount,
   ralphVerificationCount,
   onOpenAuditLog,
 }) => {
+  const count = auditVerificationCount ?? ralphVerificationCount ?? 0;
   const [latency, setLatency] = useState(28);
 
   // Live latency fluctuation around 28 ms
@@ -69,16 +72,16 @@ export const TopCommandBar: React.FC<TopCommandBarProps> = ({
           <span className="text-emerald-400 font-bold">{latency} MS</span>
         </div>
 
-        {/* Ralph Loop Active State */}
+        {/* Autonomous Audit Engine Active State */}
         <button
           onClick={onOpenAuditLog}
           className="flex items-center space-x-1.5 px-3 py-1 rounded bg-emerald-950/60 border border-emerald-500/50 hover:bg-emerald-900/50 text-emerald-400 text-xs tracking-wider transition-all shadow-sm shadow-emerald-500/20 cursor-pointer group"
-          title="Click to view Ralph Loop Activity Verification Ledger"
+          title="Click to view Autonomous System Audit & Verification Ledger"
         >
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" />
-          <span className="font-bold">RALPH LOOP ACTIVE: AUTO-VERIFIED</span>
+          <span className="font-bold">AI DISPATCH VERIFIED: LIVE AUDIT</span>
           <span className="px-1.5 py-0.2 rounded-full bg-emerald-500 text-zinc-950 text-[10px] font-extrabold">
-            {ralphVerificationCount}
+            {count}
           </span>
         </button>
       </div>

@@ -26,7 +26,7 @@ export function App() {
       actionType: 'PIN_CREATED',
       pinId: 'PIN-EXT-041',
       details: 'Automated extraction target vectored for Day 5 peak window (44.2% Mn).',
-      verifiedByRalphLoop: true,
+      verifiedBySystem: true,
       diffPayload: '+{ lat: 21.9038, lon: 85.3462, elev: 384m, grade: 44.2% }'
     },
     {
@@ -35,7 +35,7 @@ export function App() {
       actionType: 'PIN_VERIFIED',
       pinId: 'PIN-ASY-019',
       details: 'Assay calibration point verified against SWIR B11/B12 ratio 1.48 baseline.',
-      verifiedByRalphLoop: true,
+      verifiedBySystem: true,
       diffPayload: '~{ status: PENDING -> VERIFIED }'
     }
   ]);
@@ -64,14 +64,14 @@ export function App() {
     // 2. Commit verified state
     setPins(newPins);
 
-    // 3. Append to Ralph Activity Ledger
+    // 3. Append to Activity Ledger
     const newLog: ActivityLogEntry = {
       id: `log-${Date.now()}`,
       timestamp: new Date().toISOString(),
       actionType,
       pinId: targetPinId,
       details,
-      verifiedByRalphLoop: true,
+      verifiedBySystem: true,
       diffPayload
     };
     setActivityLogs(prev => [newLog, ...prev]);
@@ -139,8 +139,8 @@ export function App() {
       timestamp: new Date().toISOString(),
       actionType: 'ROLLBACK_EXECUTED',
       pinId: 'SYSTEM-ROLLBACK',
-      details: 'Ralph Loop executed rollback to previous stable coordination state.',
-      verifiedByRalphLoop: true,
+      details: 'Automated engine executed rollback to previous stable coordination state.',
+      verifiedBySystem: true,
       diffPayload: `Reverted to snapshot with ${previousState.length} active targets`
     };
     setActivityLogs(prev => [rollbackLog, ...prev]);
@@ -238,7 +238,7 @@ export function App() {
     <div className="w-screen h-screen overflow-hidden bg-zinc-950 text-slate-100 flex flex-col font-sans select-none">
       {/* 1. TOP COMMAND BAR */}
       <TopCommandBar
-        ralphVerificationCount={activityLogs.length}
+        auditVerificationCount={activityLogs.length}
         onOpenAuditLog={() => setIsAuditModalOpen(true)}
       />
 

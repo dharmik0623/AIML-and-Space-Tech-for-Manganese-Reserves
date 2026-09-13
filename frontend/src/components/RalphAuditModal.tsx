@@ -28,7 +28,7 @@ export const RalphAuditModal: React.FC<RalphAuditModalProps> = ({
             </div>
             <div>
               <h3 className="text-sm font-bold text-slate-100 tracking-wider uppercase">
-                RALPH LOOP // AUTONOMOUS AUDIT LEDGER (TASKS.JSON)
+                SYSTEM VERIFICATION // AUTONOMOUS AUDIT LEDGER (TASKS.JSON)
               </h3>
               <p className="text-[11px] text-zinc-400">
                 Continuous state verification &amp; sequential diff tracking engine

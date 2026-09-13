@@ -230,7 +230,7 @@ export const TacticalGisCanvas: React.FC<TacticalGisCanvasProps> = ({
           <span>{isAddPinMode ? 'CLICK MAP TO DROP PIN' : 'ADD TACTICAL PIN'}</span>
         </button>
 
-        {/* Undo Rollback Button (Ralph Loop State) */}
+        {/* Undo Rollback Button */}
         {canUndo && (
           <button
             onClick={(e) => {
@@ -238,7 +238,7 @@ export const TacticalGisCanvas: React.FC<TacticalGisCanvasProps> = ({
               onUndoLastAction();
             }}
             className="flex items-center space-x-1 px-2.5 py-1.5 rounded bg-zinc-900/90 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400 border border-zinc-700 text-xs tracking-wider transition-colors cursor-pointer"
-            title="Rollback last coordination change (Ralph Loop Undo)"
+            title="Rollback last coordination change (Undo)"
           >
             <Undo2 className="w-3.5 h-3.5" />
             <span>UNDO</span>

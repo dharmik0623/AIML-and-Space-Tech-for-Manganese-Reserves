@@ -69,7 +69,7 @@ export interface ActivityLogEntry {
     | 'EXPORT_GENERATED';
   pinId: string;
   details: string;
-  verifiedByRalphLoop: boolean;
+  verifiedBySystem: boolean;
   diffPayload: string;
 }
 
