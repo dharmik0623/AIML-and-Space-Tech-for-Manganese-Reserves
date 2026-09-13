@@ -262,7 +262,7 @@ export function App() {
   };
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-[#0B0E14] text-[#E6EDF3] flex flex-col font-sans select-none">
+    <div className="w-screen h-screen overflow-hidden bg-[#0D1117] text-[#E6EDF3] flex flex-col font-sans select-none">
       {/* 1. GLOBAL HEADER BAR */}
       <GlobalHeaderBar
         selectedLease={selectedLease}

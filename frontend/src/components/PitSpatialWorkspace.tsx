@@ -211,7 +211,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
   });
 
   return (
-    <div className="w-full h-full relative overflow-hidden bg-[#0B0E14] select-none flex">
+    <div className="w-full h-full relative overflow-hidden bg-[#0D1117] select-none flex">
       {/* 1. MAIN INTERACTIVE MAP CANVAS CONTAINER */}
       <div 
         ref={containerRef}
@@ -229,10 +229,10 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
       >
         {/* DRAG-AND-DROP OVERLAY INDICATOR */}
         {isDraggingFile && (
-          <div className="absolute inset-0 z-50 bg-[#0B0E14]/85 border-2 border-dashed border-[#D97706] flex flex-col items-center justify-center pointer-events-none backdrop-blur-xs">
+          <div className="absolute inset-0 z-50 bg-[#0D1117]/85 border-2 border-dashed border-[#D97706] flex flex-col items-center justify-center pointer-events-none backdrop-blur-xs">
             <Upload className="w-12 h-12 text-[#D97706] mb-3 animate-bounce" />
             <div className="text-sm font-semibold text-[#E6EDF3] tracking-wide">DROP PIT RASTER / ORTHOMOSAIC HERE</div>
-            <div className="text-xs font-mono text-[#9DA7B5] mt-1">Accepts PNG, JPG, WebP, GeoTIFF imagery</div>
+            <div className="text-xs font-mono text-[#8B949E] mt-1">Accepts PNG, JPG, WebP, GeoTIFF imagery</div>
           </div>
         )}
 
@@ -246,7 +246,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
           className="w-full h-full relative flex items-center justify-center pointer-events-auto"
         >
           {/* A. CLEAN RASTER BASEMAP (Sentinel-2 Orthomosaic) */}
-          <div className="relative w-[92%] h-[90%] max-w-[1400px] max-h-[800px] rounded border border-[#262E3D] shadow-2xl overflow-hidden bg-[#0B0E14]">
+          <div className="relative w-[92%] h-[90%] max-w-[1400px] max-h-[800px] rounded border border-[#30363D] overflow-hidden bg-[#0D1117]">
             {layers.trueColorBasemap && (
               <img 
                 src={customSiteImage || "/front_end_mg.png"} 
@@ -274,13 +274,13 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                 {/* SWIR Pyrolusite Alteration Gradients */}
                 <radialGradient id="swirHaloAlpha" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="#D97706" stopOpacity="0.55" />
-                  <stop offset="60%" stopColor="#C27803" stopOpacity="0.30" />
+                  <stop offset="60%" stopColor="#A16207" stopOpacity="0.30" />
                   <stop offset="100%" stopColor="#B45309" stopOpacity="0.0" />
                 </radialGradient>
                 <radialGradient id="swirHaloBeta" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="#D97706" stopOpacity="0.45" />
-                  <stop offset="70%" stopColor="#C27803" stopOpacity="0.20" />
-                  <stop offset="100%" stopColor="#475569" stopOpacity="0.0" />
+                  <stop offset="70%" stopColor="#A16207" stopOpacity="0.20" />
+                  <stop offset="100%" stopColor="#334155" stopOpacity="0.0" />
                 </radialGradient>
               </defs>
 
@@ -299,8 +299,8 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                   />
                   <polygon 
                     points="520,330 640,310 680,420 540,440" 
-                    fill="rgba(217,119,6,0.12)" 
-                    stroke="#C27803" 
+                    fill="rgba(161,98,7,0.15)" 
+                    stroke="#A16207" 
                     strokeWidth="1.5" 
                     strokeDasharray="4 2" 
                   />
@@ -309,11 +309,11 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
 
               {/* 2. DEM Bench Elevation Contours */}
               {layers.benchContours && (
-                <g stroke="#657386" strokeWidth="0.8" opacity="0.45" fill="none">
+                <g stroke="#6E7681" strokeWidth="0.8" opacity="0.45" fill="none">
                   <path d="M 120,80 Q 300,120 520,90 T 900,140" />
-                  <path d="M 100,180 Q 280,240 500,200 T 880,260" stroke="#9DA7B5" strokeWidth="1" />
+                  <path d="M 100,180 Q 280,240 500,200 T 880,260" stroke="#8B949E" strokeWidth="1" />
                   <path d="M 90,280 Q 260,350 480,310 T 860,380" />
-                  <path d="M 80,390 Q 250,470 470,420 T 840,490" stroke="#9DA7B5" strokeWidth="1" />
+                  <path d="M 80,390 Q 250,470 470,420 T 840,490" stroke="#8B949E" strokeWidth="1" />
                   <path d="M 70,490 Q 240,560 460,510 T 820,570" />
                 </g>
               )}
@@ -323,18 +323,18 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                 <g className="transition-opacity duration-300">
                   <path 
                     d="M 220,440 Q 310,500 410,480" 
-                    stroke="#B91C1C" 
+                    stroke="#DA3633" 
                     strokeWidth="3.5" 
                     strokeDasharray="6 3" 
                     fill="none" 
                   />
                   <polygon 
                     points="210,430 320,490 280,520 180,460" 
-                    fill="rgba(185,28,28,0.18)" 
-                    stroke="#B91C1C" 
+                    fill="rgba(218,54,51,0.18)" 
+                    stroke="#DA3633" 
                     strokeWidth="1" 
                   />
-                  <text x="235" y="475" fill="#B91C1C" fontSize="11" fontFamily="JetBrains Mono" fontWeight="600">
+                  <text x="235" y="475" fill="#DA3633" fontSize="11" fontFamily="JetBrains Mono" fontWeight="600">
                     BENCH SHEAR RISK // FoS: 1.12
                   </text>
                 </g>
@@ -346,13 +346,13 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                   {/* Primary Haul Ramp East */}
                   <path 
                     d="M 880,180 L 680,280 L 520,380 L 360,490" 
-                    stroke="#0284C7" 
+                    stroke="#1F6FEB" 
                     strokeDasharray="8 4" 
                   />
                   {/* Secondary Haul Ramp West */}
                   <path 
                     d="M 120,120 L 280,240 L 360,360" 
-                    stroke="#475569" 
+                    stroke="#334155" 
                     strokeDasharray="4 4" 
                   />
                 </g>
@@ -370,10 +370,10 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
               const markerBg = isPreSplit 
                 ? 'bg-[#D97706] border-[#B45309]' 
                 : isBorehole 
-                ? 'bg-[#0284C7] border-[#0369A1]' 
+                ? 'bg-[#1F6FEB] border-[#1158C7]' 
                 : isPiezometer 
-                ? 'bg-[#B91C1C] border-[#991B1B]' 
-                : 'bg-[#2E7D32] border-[#1B5E20]';
+                ? 'bg-[#DA3633] border-[#B62324]' 
+                : 'bg-[#238636] border-[#1C6A2B]';
 
               return (
                 <div
@@ -397,9 +397,9 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                   </div>
 
                   {/* Hover Tag */}
-                  <div className="hidden group-hover:flex absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-[#121722] border border-[#262E3D] rounded shadow-xl whitespace-nowrap z-30 flex-col items-center pointer-events-none">
+                  <div className="hidden group-hover:flex absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-[#161B22] border border-[#30363D] rounded shadow-xl whitespace-nowrap z-30 flex-col items-center pointer-events-none">
                     <span className="text-xs font-semibold text-[#E6EDF3]">{wp.pointId}</span>
-                    <span className="text-[9px] font-mono text-[#9DA7B5]">
+                    <span className="text-[9px] font-mono text-[#8B949E]">
                       {wp.estimatedGradeMn > 0 ? `${wp.estimatedGradeMn}% Mn` : wp.operationalClass}
                     </span>
                   </div>
@@ -426,7 +426,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
             className={`flex items-center space-x-1.5 px-3 py-1.5 rounded border text-xs font-medium transition-all cursor-pointer shadow-lg ${
               isCrosshairDropMode 
                 ? 'bg-[#D97706] text-zinc-950 border-[#B45309] font-semibold' 
-                : 'bg-[#121722] text-[#E6EDF3] border-[#262E3D] hover:bg-[#1A202C]'
+                : 'bg-[#161B22] text-[#E6EDF3] border-[#30363D] hover:bg-[#21262D]'
             }`}
           >
             <Crosshair className="w-3.5 h-3.5" />
@@ -440,14 +440,14 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
               title="Upload custom pit orthomosaic, drone raster, or satellite imagery"
               className={`flex items-center space-x-1.5 px-3 py-1.5 rounded border text-xs font-medium transition-all cursor-pointer shadow-lg ${
                 customSiteImage
-                  ? 'bg-[#1A202C] text-[#D97706] border-[#D97706]'
-                  : 'bg-[#121722] text-[#E6EDF3] border-[#262E3D] hover:bg-[#1A202C]'
+                  ? 'bg-[#21262D] text-[#D97706] border-[#D97706]'
+                  : 'bg-[#161B22] text-[#E6EDF3] border-[#30363D] hover:bg-[#21262D]'
               }`}
             >
               {customSiteImage ? (
                 <ImageIcon className="w-3.5 h-3.5 text-[#D97706]" />
               ) : (
-                <Upload className="w-3.5 h-3.5 text-[#9DA7B5]" />
+                <Upload className="w-3.5 h-3.5 text-[#8B949E]" />
               )}
               <span>{customImageName ? `RASTER: ${customImageName.slice(0, 16)}...` : 'UPLOAD SITE RASTER'}</span>
             </button>
@@ -456,7 +456,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
               <button
                 onClick={handleResetToDefaultImage}
                 title="Reset to default Sector 4B Pit Basemap"
-                className="px-2 py-1.5 rounded border border-[#262E3D] bg-[#121722] hover:bg-[#1A202C] text-[#9DA7B5] hover:text-[#E6EDF3] text-xs transition-colors cursor-pointer"
+                className="px-2 py-1.5 rounded border border-[#30363D] bg-[#161B22] hover:bg-[#21262D] text-[#8B949E] hover:text-[#E6EDF3] text-xs transition-colors cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -464,18 +464,18 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
           </div>
 
           {/* Class Filter Dropdown */}
-          <div className="flex items-center bg-[#121722] border border-[#262E3D] rounded px-2 py-1 text-xs">
-            <Filter className="w-3 h-3 text-[#657386] mr-1.5" />
+          <div className="flex items-center bg-[#161B22] border border-[#30363D] rounded px-2 py-1 text-xs">
+            <Filter className="w-3 h-3 text-[#6E7681] mr-1.5" />
             <select
               value={classFilter}
               onChange={(e) => setClassFilter(e.target.value)}
               className="bg-transparent text-xs text-[#E6EDF3] border-none outline-none cursor-pointer font-medium"
             >
-              <option value="ALL" className="bg-[#121722]">ALL OPERATIONAL CLASSES</option>
-              <option value="Controlled Pre-Split Blast" className="bg-[#121722]">PRE-SPLIT BLAST</option>
-              <option value="Grade Verification Borehole" className="bg-[#121722]">GRADE BOREHOLE</option>
-              <option value="Geotechnical Piezometer" className="bg-[#121722]">PIEZOMETER ARRAY</option>
-              <option value="Haul Ramp Maintenance" className="bg-[#121722]">HAUL RAMP MAINTENANCE</option>
+              <option value="ALL" className="bg-[#161B22]">ALL OPERATIONAL CLASSES</option>
+              <option value="Controlled Pre-Split Blast" className="bg-[#161B22]">PRE-SPLIT BLAST</option>
+              <option value="Grade Verification Borehole" className="bg-[#161B22]">GRADE BOREHOLE</option>
+              <option value="Geotechnical Piezometer" className="bg-[#161B22]">PIEZOMETER ARRAY</option>
+              <option value="Haul Ramp Maintenance" className="bg-[#161B22]">HAUL RAMP MAINTENANCE</option>
             </select>
           </div>
         </div>
@@ -487,7 +487,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
             <button
               onClick={() => setIsLayerMenuOpen(!isLayerMenuOpen)}
               className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded border text-xs font-medium transition-colors cursor-pointer shadow-lg ${
-                isLayerMenuOpen ? 'bg-[#1A202C] text-[#E6EDF3] border-[#D97706]' : 'bg-[#121722] text-[#9DA7B5] border-[#262E3D] hover:text-[#E6EDF3]'
+                isLayerMenuOpen ? 'bg-[#21262D] text-[#E6EDF3] border-[#D97706]' : 'bg-[#161B22] text-[#8B949E] border-[#30363D] hover:text-[#E6EDF3]'
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
@@ -496,8 +496,8 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
 
             {/* Layer Toggles Popover */}
             {isLayerMenuOpen && (
-              <div className="absolute right-0 mt-1.5 w-64 bg-[#121722] border border-[#262E3D] rounded-md shadow-2xl p-2.5 space-y-2 z-40 text-xs font-sans">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-[#657386] pb-1 border-b border-[#262E3D]">
+              <div className="absolute right-0 mt-1.5 w-64 bg-[#161B22] border border-[#30363D] rounded-md shadow-2xl p-2.5 space-y-2 z-40 text-xs font-sans">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-[#6E7681] pb-1 border-b border-[#30363D]">
                   WebGIS Layer Overlays
                 </div>
 
@@ -565,26 +565,26 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
           </div>
 
           {/* Zoom / Reset Tool Buttons */}
-          <div className="flex items-center bg-[#121722] border border-[#262E3D] rounded overflow-hidden shadow-lg">
+          <div className="flex items-center bg-[#161B22] border border-[#30363D] rounded overflow-hidden shadow-lg">
             <button
               onClick={() => setZoom(z => Math.min(3.5, z * 1.2))}
-              className="p-1.5 text-[#9DA7B5] hover:text-[#E6EDF3] hover:bg-[#1A202C] transition-colors"
+              className="p-1.5 text-[#8B949E] hover:text-[#E6EDF3] hover:bg-[#21262D] transition-colors"
               title="Zoom In"
             >
               <ZoomIn className="w-3.5 h-3.5" />
             </button>
-            <div className="w-[1px] h-4 bg-[#262E3D]" />
+            <div className="w-[1px] h-4 bg-[#30363D]" />
             <button
               onClick={() => setZoom(z => Math.max(0.65, z * 0.8))}
-              className="p-1.5 text-[#9DA7B5] hover:text-[#E6EDF3] hover:bg-[#1A202C] transition-colors"
+              className="p-1.5 text-[#8B949E] hover:text-[#E6EDF3] hover:bg-[#21262D] transition-colors"
               title="Zoom Out"
             >
               <ZoomOut className="w-3.5 h-3.5" />
             </button>
-            <div className="w-[1px] h-4 bg-[#262E3D]" />
+            <div className="w-[1px] h-4 bg-[#30363D]" />
             <button
               onClick={resetView}
-              className="p-1.5 text-[#9DA7B5] hover:text-[#E6EDF3] hover:bg-[#1A202C] transition-colors"
+              className="p-1.5 text-[#8B949E] hover:text-[#E6EDF3] hover:bg-[#21262D] transition-colors"
               title="Reset View"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -595,37 +595,37 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
         {/* 4. BOTTOM-LEFT: Industrial Metric Scale Bar & Compass Rose */}
         <div className="absolute bottom-3 left-3 z-30 flex items-end space-x-3 pointer-events-none">
           {/* Compass Rose */}
-          <div className="w-9 h-9 rounded bg-[#121722]/90 border border-[#262E3D] flex flex-col items-center justify-center font-mono text-[9px] text-[#9DA7B5]">
+          <div className="w-9 h-9 rounded bg-[#161B22]/90 border border-[#30363D] flex flex-col items-center justify-center font-mono text-[9px] text-[#8B949E]">
             <span className="font-bold text-[#D97706]">N</span>
-            <span className="text-[7px] text-[#657386]">000°</span>
+            <span className="text-[7px] text-[#6E7681]">000°</span>
           </div>
 
           {/* Metric Scale Bar */}
-          <div className="bg-[#121722]/90 border border-[#262E3D] px-2.5 py-1.5 rounded flex flex-col space-y-1">
-            <div className="flex justify-between text-[9px] font-mono text-[#9DA7B5] w-36">
+          <div className="bg-[#161B22]/90 border border-[#30363D] px-2.5 py-1.5 rounded flex flex-col space-y-1">
+            <div className="flex justify-between text-[9px] font-mono text-[#8B949E] w-36">
               <span>0</span>
               <span>100m</span>
               <span>250m</span>
               <span>500m</span>
             </div>
-            <div className="w-36 h-1.5 border border-[#262E3D] flex">
+            <div className="w-36 h-1.5 border border-[#30363D] flex">
               <div className="w-1/4 h-full bg-[#E6EDF3]" />
-              <div className="w-1/4 h-full bg-[#262E3D]" />
+              <div className="w-1/4 h-full bg-[#30363D]" />
               <div className="w-1/2 h-full bg-[#E6EDF3]" />
             </div>
-            <span className="text-[8px] font-mono text-[#657386] text-center">GSD: 0.10M / PIXEL</span>
+            <span className="text-[8px] font-mono text-[#6E7681] text-center">GSD: 0.10M / PIXEL</span>
           </div>
         </div>
 
         {/* 5. BOTTOM-RIGHT: Real-Time Cursor HUD */}
         <div className="absolute bottom-3 right-3 z-30 pointer-events-none">
-          <div className="bg-[#121722]/95 border border-[#262E3D] px-3 py-1.5 rounded shadow-xl flex items-center space-x-2 text-xs font-mono">
-            <span className="text-[#0284C7]">{cursorHud.lat}</span>
-            <span className="text-[#657386]">,</span>
-            <span className="text-[#0284C7]">{cursorHud.lon}</span>
-            <span className="text-[#262E3D]">|</span>
-            <span className="text-[#9DA7B5]">{cursorHud.utm}</span>
-            <span className="text-[#262E3D]">|</span>
+          <div className="bg-[#161B22]/95 border border-[#30363D] px-3 py-1.5 rounded shadow-xl flex items-center space-x-2 text-xs font-mono">
+            <span className="text-[#1F6FEB]">{cursorHud.lat}</span>
+            <span className="text-[#6E7681]">,</span>
+            <span className="text-[#1F6FEB]">{cursorHud.lon}</span>
+            <span className="text-[#30363D]">|</span>
+            <span className="text-[#8B949E]">{cursorHud.utm}</span>
+            <span className="text-[#30363D]">|</span>
             <span className="text-[#D97706] font-medium">{cursorHud.elevation}</span>
           </div>
         </div>
@@ -633,19 +633,19 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
 
       {/* 6. RIGHT-HAND WAYPOINT INSPECTOR DRAWER */}
       {selectedWaypoint && (
-        <div className="w-80 h-full bg-[#121722] border-l border-[#262E3D] flex flex-col z-40 p-4 font-sans text-xs space-y-3 flex-shrink-0 animate-in slide-in-from-right duration-200">
+        <div className="w-80 h-full bg-[#161B22] border-l border-[#30363D] flex flex-col z-40 p-4 font-sans text-xs space-y-3 flex-shrink-0 animate-in slide-in-from-right duration-200">
           {/* Drawer Header */}
-          <div className="flex items-center justify-between pb-2 border-b border-[#262E3D]">
+          <div className="flex items-center justify-between pb-2 border-b border-[#30363D]">
             <div className="flex items-center space-x-2">
               <MapPin className="w-4 h-4 text-[#D97706]" />
               <div>
                 <h3 className="font-semibold text-sm text-[#E6EDF3]">{selectedWaypoint.pointId}</h3>
-                <span className="text-[10px] font-mono text-[#657386]">{selectedWaypoint.coordinates.utm}</span>
+                <span className="text-[10px] font-mono text-[#6E7681]">{selectedWaypoint.coordinates.utm}</span>
               </div>
             </div>
             <button
               onClick={() => setSelectedWaypoint(null)}
-              className="text-[#9DA7B5] hover:text-[#E6EDF3] p-1 rounded hover:bg-[#1A202C] transition-colors"
+              className="text-[#8B949E] hover:text-[#E6EDF3] p-1 rounded hover:bg-[#21262D] transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -655,7 +655,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
           <div className="space-y-3 flex-1 overflow-y-auto pr-1">
             {/* Class */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">OPERATIONAL CLASS</label>
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">OPERATIONAL CLASS</label>
               <select
                 value={selectedWaypoint.operationalClass}
                 onChange={(e) => {
@@ -663,7 +663,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                   setSelectedWaypoint(updated);
                   onUpdateWaypoint(updated);
                 }}
-                className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
+                className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
               >
                 <option value="Controlled Pre-Split Blast">Controlled Pre-Split Blast</option>
                 <option value="Grade Verification Borehole">Grade Verification Borehole</option>
@@ -674,7 +674,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
 
             {/* Estimated Mn Grade */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">ESTIMATED GRADE (% Mn)</label>
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">ESTIMATED GRADE (% Mn)</label>
               <input 
                 type="number"
                 step="0.1"
@@ -686,13 +686,13 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                   setSelectedWaypoint(updated);
                   onUpdateWaypoint(updated);
                 }}
-                className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs font-mono text-[#E6EDF3] outline-none"
+                className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs font-mono text-[#E6EDF3] outline-none"
               />
             </div>
 
             {/* Shift Assignment */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">SHIFT ASSIGNMENT</label>
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">SHIFT ASSIGNMENT</label>
               <select
                 value={selectedWaypoint.shift}
                 onChange={(e) => {
@@ -700,7 +700,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                   setSelectedWaypoint(updated);
                   onUpdateWaypoint(updated);
                 }}
-                className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
+                className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
               >
                 <option value="Shift A (06:00 - 14:00)">Shift A (06:00 - 14:00)</option>
                 <option value="Shift B (14:00 - 22:00)">Shift B (14:00 - 22:00)</option>
@@ -710,7 +710,7 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
 
             {/* Assigned Rig / Fleet */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">ASSIGNED RIG / FLEET UNIT</label>
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">ASSIGNED RIG / FLEET UNIT</label>
               <input 
                 type="text"
                 value={selectedWaypoint.assignedRigOrFleet}
@@ -719,14 +719,14 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                   setSelectedWaypoint(updated);
                   onUpdateWaypoint(updated);
                 }}
-                className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
+                className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
                 placeholder="e.g. Rig DRILL-04"
               />
             </div>
 
             {/* Field Remarks */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">FIELD REMARKS & LOG</label>
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">FIELD REMARKS & LOG</label>
               <textarea
                 rows={3}
                 value={selectedWaypoint.fieldRemarks}
@@ -735,13 +735,13 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                   setSelectedWaypoint(updated);
                   onUpdateWaypoint(updated);
                 }}
-                className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none resize-none"
+                className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none resize-none"
               />
             </div>
 
             {/* Status Button Toggle */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">DISPATCH STATUS</label>
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">DISPATCH STATUS</label>
               <button
                 onClick={() => {
                   const next: WaypointStatus = 
@@ -753,10 +753,10 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
                 }}
                 className={`w-full py-2 px-3 rounded text-xs font-mono font-medium flex items-center justify-center space-x-2 border transition-colors cursor-pointer ${
                   selectedWaypoint.status === 'VERIFIED'
-                    ? 'bg-[#1A202C] text-[#2E7D32] border-[#2E7D32]'
+                    ? 'bg-[#238636]/15 text-[#3FB950] border-[#238636]/40'
                     : selectedWaypoint.status === 'IN PROGRESS'
-                    ? 'bg-[#1A202C] text-[#D97706] border-[#D97706]'
-                    : 'bg-[#1A202C] text-[#9DA7B5] border-[#262E3D]'
+                    ? 'bg-[#B08800]/15 text-[#D29922] border-[#B08800]/40'
+                    : 'bg-[#21262D] text-[#8B949E] border-[#30363D]'
                 }`}
               >
                 {selectedWaypoint.status === 'VERIFIED' ? (
@@ -772,13 +772,13 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
           </div>
 
           {/* Delete Action */}
-          <div className="pt-2 border-t border-[#262E3D]">
+          <div className="pt-2 border-t border-[#30363D]">
             <button
               onClick={() => {
                 onDeleteWaypoint(selectedWaypoint.id);
                 setSelectedWaypoint(null);
               }}
-              className="w-full py-1.5 rounded bg-[#1A202C] hover:bg-[#B91C1C]/20 border border-[#262E3D] hover:border-[#B91C1C] text-[#9DA7B5] hover:text-[#B91C1C] text-xs font-mono transition-colors flex items-center justify-center space-x-1 cursor-pointer"
+              className="w-full py-1.5 rounded bg-[#21262D] hover:bg-[#DA3633]/20 border border-[#30363D] hover:border-[#DA3633] text-[#8B949E] hover:text-[#DA3633] text-xs font-mono transition-colors flex items-center justify-center space-x-1 cursor-pointer"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>DELETE WAYPOINT</span>

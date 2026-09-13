@@ -69,25 +69,23 @@ export const WaypointModal: React.FC<WaypointModalProps> = ({
 
     onSave(newWaypoint);
     onClose();
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B0E14]/80 backdrop-blur-sm select-none p-4">
-      <div className="w-full max-w-lg bg-[#121722] border border-[#262E3D] rounded-lg shadow-2xl p-5 space-y-4 font-sans text-xs">
+  };  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0D1117]/85 backdrop-blur-sm select-none p-4">
+      <div className="w-full max-w-lg bg-[#161B22] border border-[#30363D] rounded-lg shadow-2xl p-5 space-y-4 font-sans text-xs">
         {/* Modal Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-[#262E3D]">
+        <div className="flex items-center justify-between pb-3 border-b border-[#30363D]">
           <div className="flex items-center space-x-2">
-            <div className="p-1.5 rounded bg-[#1A202C] border border-[#262E3D] text-[#D97706]">
+            <div className="p-1.5 rounded bg-[#21262D] border border-[#30363D] text-[#D97706]">
               <Crosshair className="w-4 h-4" />
             </div>
             <div>
               <h3 className="font-semibold text-sm text-[#E6EDF3]">Log Operational Coordinate</h3>
-              <p className="text-[11px] font-mono text-[#657386]">WGS 84 / UTM Zone 45N Dispatch Ingestion</p>
+              <p className="text-[11px] font-mono text-[#6E7681]">WGS 84 / UTM Zone 45N Dispatch Ingestion</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-[#9DA7B5] hover:text-[#E6EDF3] p-1 rounded hover:bg-[#1A202C] transition-colors"
+            className="text-[#8B949E] hover:text-[#E6EDF3] p-1 rounded hover:bg-[#21262D] transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -96,17 +94,17 @@ export const WaypointModal: React.FC<WaypointModalProps> = ({
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="space-y-3">
           {/* Readonly Coordinate Preview */}
-          <div className="bg-[#1A202C] border border-[#262E3D] p-2.5 rounded font-mono text-[11px] space-y-1 text-[#9DA7B5]">
+          <div className="bg-[#21262D] border border-[#30363D] p-2.5 rounded font-mono text-[11px] space-y-1 text-[#8B949E]">
             <div className="flex justify-between">
-              <span className="text-[#657386]">GEOGRAPHIC:</span>
-              <span className="text-[#0284C7] font-medium">{lat.toFixed(5)}° N, {lon.toFixed(5)}° E</span>
+              <span className="text-[#6E7681]">GEOGRAPHIC:</span>
+              <span className="text-[#1F6FEB] font-medium">{lat.toFixed(5)}° N, {lon.toFixed(5)}° E</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#657386]">PROJECTION UTM:</span>
+              <span className="text-[#6E7681]">PROJECTION UTM:</span>
               <span className="text-[#E6EDF3]">{utm}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#657386]">PIT ELEVATION:</span>
+              <span className="text-[#6E7681]">PIT ELEVATION:</span>
               <span className="text-[#D97706] font-medium">{elevationRl}m RL</span>
             </div>
           </div>
@@ -114,23 +112,23 @@ export const WaypointModal: React.FC<WaypointModalProps> = ({
           <div className="grid grid-cols-2 gap-3">
             {/* Point ID */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">POINT ID</label>
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">POINT ID</label>
               <input
                 type="text"
                 value={pointId}
                 onChange={(e) => setPointId(e.target.value)}
-                className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs font-mono text-[#E6EDF3] outline-none"
+                className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs font-mono text-[#E6EDF3] outline-none"
                 required
               />
             </div>
 
             {/* Operational Class */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">OPERATIONAL CLASS</label>
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">OPERATIONAL CLASS</label>
               <select
                 value={operationalClass}
                 onChange={(e) => setOperationalClass(e.target.value as OperationalClass)}
-                className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
+                className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
               >
                 <option value="Controlled Pre-Split Blast">Controlled Pre-Split Blast</option>
                 <option value="Grade Verification Borehole">Grade Verification Borehole</option>
@@ -143,8 +141,8 @@ export const WaypointModal: React.FC<WaypointModalProps> = ({
           <div className="grid grid-cols-2 gap-3">
             {/* Est Grade */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">EST. Mn GRADE (%)</label>
-              <input
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">EST. Mn GRADE (%)</label>
+              <input 
                 type="number"
                 step="0.1"
                 min="0"
@@ -152,17 +150,17 @@ export const WaypointModal: React.FC<WaypointModalProps> = ({
                 disabled={operationalClass === 'Geotechnical Piezometer' || operationalClass === 'Haul Ramp Maintenance'}
                 value={operationalClass === 'Geotechnical Piezometer' || operationalClass === 'Haul Ramp Maintenance' ? 0 : estimatedGradeMn}
                 onChange={(e) => setEstimatedGradeMn(parseFloat(e.target.value) || 0)}
-                className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs font-mono text-[#E6EDF3] outline-none disabled:opacity-40"
+                className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs font-mono text-[#E6EDF3] outline-none disabled:opacity-40"
               />
             </div>
 
             {/* Shift Assignment */}
             <div>
-              <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">SHIFT ASSIGNMENT</label>
+              <label className="block text-[11px] font-mono text-[#8B949E] mb-1">SHIFT ASSIGNMENT</label>
               <select
                 value={shift}
                 onChange={(e) => setShift(e.target.value as ShiftAssignment)}
-                className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
+                className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
               >
                 <option value="Shift A (06:00 - 14:00)">Shift A (06:00 - 14:00)</option>
                 <option value="Shift B (14:00 - 22:00)">Shift B (14:00 - 22:00)</option>
@@ -173,34 +171,34 @@ export const WaypointModal: React.FC<WaypointModalProps> = ({
 
           {/* Assigned Rig / Fleet */}
           <div>
-            <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">ASSIGNED RIG / FLEET UNIT</label>
-            <input
+            <label className="block text-[11px] font-mono text-[#8B949E] mb-1">ASSIGNED RIG / FLEET UNIT</label>
+            <input 
               type="text"
               value={assignedRigOrFleet}
               onChange={(e) => setAssignedRigOrFleet(e.target.value)}
-              className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
+              className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none"
               placeholder="e.g. Rig DRILL-04 (Atlas Copco)"
             />
           </div>
 
           {/* Field Remarks */}
           <div>
-            <label className="block text-[11px] font-mono text-[#9DA7B5] mb-1">FIELD REMARKS</label>
+            <label className="block text-[11px] font-mono text-[#8B949E] mb-1">FIELD REMARKS</label>
             <textarea
               rows={2}
               value={fieldRemarks}
               onChange={(e) => setFieldRemarks(e.target.value)}
-              className="w-full bg-[#1A202C] border border-[#262E3D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none resize-none"
+              className="w-full bg-[#21262D] border border-[#30363D] rounded px-2.5 py-1.5 text-xs text-[#E6EDF3] outline-none resize-none"
               placeholder="Operational instructions, geotechnical precautions, or ore seam notes"
             />
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-end space-x-2 pt-3 border-t border-[#262E3D]">
+          <div className="flex items-center justify-end space-x-2 pt-3 border-t border-[#30363D]">
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-1.5 rounded bg-[#1A202C] hover:bg-[#232B3B] border border-[#262E3D] text-[#9DA7B5] text-xs font-mono transition-colors"
+              className="px-3 py-1.5 rounded bg-[#21262D] hover:bg-[#282E37] border border-[#30363D] text-[#8B949E] text-xs font-mono transition-colors"
             >
               CANCEL
             </button>
