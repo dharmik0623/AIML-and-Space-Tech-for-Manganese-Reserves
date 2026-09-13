@@ -11,7 +11,9 @@ import {
   CheckCircle2, 
   Clock, 
   AlertCircle,
-  MapPin
+  MapPin,
+  Upload,
+  Image as ImageIcon
 } from 'lucide-react';
 import type { 
   OperationalWaypoint, 
@@ -70,6 +72,62 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
   const [classFilter, setClassFilter] = useState<string>('ALL');
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Custom Uploaded Site Imagery
+  const [customSiteImage, setCustomSiteImage] = useState<string | null>(() => {
+    return localStorage.getItem('mnsight_custom_site_image') || null;
+  });
+  const [customImageName, setCustomImageName] = useState<string | null>(() => {
+    return localStorage.getItem('mnsight_custom_site_name') || null;
+  });
+  const [isDraggingFile, setIsDraggingFile] = useState<boolean>(false);
+
+  const processImageFile = (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      alert('Please upload an image file (PNG, JPG, TIFF, WebP).');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const dataUrl = event.target?.result as string;
+      if (dataUrl) {
+        setCustomSiteImage(dataUrl);
+        setCustomImageName(file.name);
+        try {
+          localStorage.setItem('mnsight_custom_site_image', dataUrl);
+          localStorage.setItem('mnsight_custom_site_name', file.name);
+        } catch {
+          // In case local storage quota is reached, still keeps in memory
+        }
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      processImageFile(file);
+    }
+  };
+
+  const handleFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDraggingFile(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      processImageFile(file);
+    }
+  };
+
+  const handleResetToDefaultImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCustomSiteImage(null);
+    setCustomImageName(null);
+    localStorage.removeItem('mnsight_custom_site_image');
+    localStorage.removeItem('mnsight_custom_site_name');
+  };
 
   // Pan handling
   const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
@@ -162,10 +220,22 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
         onMouseUp={handleMouseUp}
         onWheel={handleWheel}
         onClick={handleCanvasClick}
+        onDragOver={(e) => { e.preventDefault(); setIsDraggingFile(true); }}
+        onDragLeave={() => setIsDraggingFile(false)}
+        onDrop={handleFileDrop}
         className={`w-full h-full relative overflow-hidden ${
           isCrosshairDropMode ? 'cursor-crosshair' : isPanning ? 'cursor-grabbing' : 'cursor-grab'
         }`}
       >
+        {/* DRAG-AND-DROP OVERLAY INDICATOR */}
+        {isDraggingFile && (
+          <div className="absolute inset-0 z-50 bg-[#0B0E14]/85 border-2 border-dashed border-[#D97706] flex flex-col items-center justify-center pointer-events-none backdrop-blur-xs">
+            <Upload className="w-12 h-12 text-[#D97706] mb-3 animate-bounce" />
+            <div className="text-sm font-semibold text-[#E6EDF3] tracking-wide">DROP PIT RASTER / ORTHOMOSAIC HERE</div>
+            <div className="text-xs font-mono text-[#9DA7B5] mt-1">Accepts PNG, JPG, WebP, GeoTIFF imagery</div>
+          </div>
+        )}
+
         {/* TRANSFORM WRAPPER: Decoupled raster basemap + vector overlays */}
         <div 
           style={{
@@ -179,8 +249,16 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
           <div className="relative w-[92%] h-[90%] max-w-[1400px] max-h-[800px] rounded border border-[#262E3D] shadow-2xl overflow-hidden bg-[#0B0E14]">
             {layers.trueColorBasemap && (
               <img 
-                src="/front end mg.png" 
+                src={customSiteImage || "/front_end_mg.png"} 
                 alt="Pit Orthomosaic Basemap"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('front_end_mg.png')) {
+                    target.src = '/front_end_mg.png';
+                  } else {
+                    target.src = '/front end mg.png';
+                  }
+                }}
                 className="w-full h-full object-cover select-none pointer-events-none filter brightness-90 contrast-110"
                 draggable={false}
               />
@@ -331,6 +409,15 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
           </div>
         </div>
 
+        {/* Hidden File Input for Site Image Upload */}
+        <input 
+          type="file"
+          ref={fileInputRef}
+          accept="image/*,.tif,.tiff"
+          onChange={handleFileChange}
+          className="hidden"
+        />
+
         {/* 2. TOP-LEFT ACTION CONTROLS */}
         <div className="absolute top-3 left-3 z-30 flex items-center space-x-2">
           {/* Add Waypoint Button */}
@@ -345,6 +432,36 @@ export const PitSpatialWorkspace: React.FC<PitSpatialWorkspaceProps> = ({
             <Crosshair className="w-3.5 h-3.5" />
             <span>{isCrosshairDropMode ? 'CLICK ON PIT TO LOG' : 'LOG OPERATIONAL COORDINATE'}</span>
           </button>
+
+          {/* Upload Custom Site Raster Button */}
+          <div className="flex items-center space-x-1">
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              title="Upload custom pit orthomosaic, drone raster, or satellite imagery"
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded border text-xs font-medium transition-all cursor-pointer shadow-lg ${
+                customSiteImage
+                  ? 'bg-[#1A202C] text-[#D97706] border-[#D97706]'
+                  : 'bg-[#121722] text-[#E6EDF3] border-[#262E3D] hover:bg-[#1A202C]'
+              }`}
+            >
+              {customSiteImage ? (
+                <ImageIcon className="w-3.5 h-3.5 text-[#D97706]" />
+              ) : (
+                <Upload className="w-3.5 h-3.5 text-[#9DA7B5]" />
+              )}
+              <span>{customImageName ? `RASTER: ${customImageName.slice(0, 16)}...` : 'UPLOAD SITE RASTER'}</span>
+            </button>
+
+            {customSiteImage && (
+              <button
+                onClick={handleResetToDefaultImage}
+                title="Reset to default Sector 4B Pit Basemap"
+                className="px-2 py-1.5 rounded border border-[#262E3D] bg-[#121722] hover:bg-[#1A202C] text-[#9DA7B5] hover:text-[#E6EDF3] text-xs transition-colors cursor-pointer"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
 
           {/* Class Filter Dropdown */}
           <div className="flex items-center bg-[#121722] border border-[#262E3D] rounded px-2 py-1 text-xs">
