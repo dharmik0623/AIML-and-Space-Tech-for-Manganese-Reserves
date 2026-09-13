@@ -1,23 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 
 @layer base {
   *, *::before, *::after {
-    font-family: 'Rethink Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .font-mono, 
+  [data-mono="true"],
+  .tabular-nums {
+    font-family: 'JetBrains Mono', monospace !important;
   }
 
   :root {
-    --font-rethink: 'Rethink Sans', sans-serif;
+    --color-root-canvas: #0B0E14;
+    --color-panel-surface: #121722;
+    --color-card-surface: #1A202C;
+    --color-border-structural: #262E3D;
+    --color-row-hover: #232B3B;
+
+    --color-text-primary: #E6EDF3;
+    --color-text-secondary: #9DA7B5;
+    --color-text-muted: #657386;
+
+    --color-ore-mn: #D97706;
+    --color-ore-mn-dark: #B45309;
+    --color-alteration-halo: #C27803;
+    --color-gangue: #475569;
+    --color-geotech-stable: #2E7D32;
+    --color-caution: #D97706;
+    --color-hazard: #B91C1C;
+    --color-telemetry-sync: #0284C7;
   }
 
   body {
-    background-color: #020617; /* zinc/slate-950 */
-    color: #f1f5f9;
+    background-color: #0B0E14;
+    color: #E6EDF3;
     margin: 0;
     padding: 0;
     overflow: hidden;
     user-select: none;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   #root {
@@ -30,71 +54,35 @@
   }
 }
 
-/* Custom Scrollbars */
+/* Industrial Scrollbars */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(9, 9, 11, 0.8);
+  background: #0B0E14;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3f3f46;
+  background: #262E3D;
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #f59e0b;
+  background: #3B465A;
 }
 
-/* Tactical Glassmorphism */
-.tactical-panel {
-  background: rgba(9, 9, 11, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(63, 63, 70, 0.6);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+/* Industrial Surface Classes */
+.bg-root-canvas { background-color: #0B0E14; }
+.bg-panel-surface { background-color: #121722; }
+.bg-card-surface { background-color: #1A202C; }
+.border-structural { border-color: #262E3D; }
+.hover-row:hover { background-color: #232B3B; }
+
+/* Pulse animation without neon bloom */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
-.tactical-border-amber {
-  border-color: rgba(245, 158, 11, 0.5);
-}
-
-.tactical-border-cyan {
-  border-color: rgba(6, 182, 212, 0.5);
-}
-
-.tactical-border-emerald {
-  border-color: rgba(16, 185, 129, 0.5);
-}
-
-.tactical-border-crimson {
-  border-color: rgba(239, 68, 68, 0.5);
-}
-
-/* Glow effects */
-.glow-amber {
-  text-shadow: 0 0 12px rgba(245, 158, 11, 0.7);
-}
-
-.glow-cyan {
-  text-shadow: 0 0 12px rgba(6, 182, 212, 0.7);
-}
-
-.glow-emerald {
-  text-shadow: 0 0 12px rgba(16, 185, 129, 0.7);
-}
-
-.glow-crimson {
-  text-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
-}
-
-/* Animations */
-@keyframes pulse-radar {
-  0% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.6); opacity: 0.15; }
-  100% { transform: scale(1); opacity: 0.9; }
-}
-
-.pulse-radar-dot {
-  animation: pulse-radar 2.2s infinite ease-in-out;
+.animate-telemetry-pulse {
+  animation: subtle-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
