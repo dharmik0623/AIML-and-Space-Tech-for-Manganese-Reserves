@@ -10,7 +10,7 @@
 ---
 
 ## 📑 Official Presentation Deck
-- **Presentation File**: [**`sih_submission.ppt`**](./sih_submission.ppt) (4.56 MB — Complete SIH Grand Finale Pitch Deck covering Problem Statement, Orbital MPM Architecture, Predictive Haul Rerouting, and Triple-Bottom-Line MOIL ROI).
+- **Presentation File**: [**`sih_submission.ppt`**](./sih_submission.ppt)
 
 ---
 
